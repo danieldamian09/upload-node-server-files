@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer")
+// const mimeTypes = require("mime-types")
 const app = express();
 
 // configuracion para l extension de la imagen
@@ -7,7 +8,8 @@ const storage = multer.diskStorage({
   destination: "uploads/",
   filename: function(req, file,cb){
     // aca asignamos el nombre al archivo
-    cb("","imagen.jpg");
+    cb("", file.originalname);
+    
   }
 })
 
