@@ -1,7 +1,10 @@
 const express = require("express");
 const multer = require("multer")
+const cors = require("cors")
 // const mimeTypes = require("mime-types")
 const app = express();
+
+app.use(cors());
 
 // configuracion para l extension de la imagen
 const storage = multer.diskStorage({
