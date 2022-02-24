@@ -1,11 +1,19 @@
 const express = require("express");
-const res = require("express/lib/response");
 const multer = require("multer")
 const app = express();
 
+// configuracion para l extension de la imagen
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: function(req, file,cb){
+    // aca asignamos el nombre al archivo
+    cb("","imagen.jpg");
+  }
+})
+
 // configuracion de multer
 const upload = multer({
-  dest:"uploads/"
+  storage
 })
 
 app.get("/", (req, res) => {
@@ -13,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 // Permitir que el usuario nos envie archivos
-app.post("/file",upload.single("avatar"), (req, resp) => {
+app.post("/files",upload.single("avatar"), (req, res) => {
   res.send("Archivo subido con exito")
 })
 
